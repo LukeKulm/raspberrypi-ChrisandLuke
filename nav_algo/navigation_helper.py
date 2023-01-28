@@ -1,5 +1,7 @@
 import nav_algo.coordinates as coord
 import nav_algo.navigation_utilities as util
+import nav_algo.sensors as sensors
+import time
 import math
 import numpy as np
 
@@ -391,6 +393,11 @@ def collisionAvoidance(buoy_waypoints, boat):
 def search(waypoints, boat, scalar=math.pi, constant=100):
     search_waypoints = []
     rotated_waypoints = []
+    counter = 0
+    while(counter < 10):
+        sensors.readWindDirection()
+        counter = counter +1
+        time.sleep(1)
     center_point = waypoints[0]
     radius = 100
     # Generating waypoints 
